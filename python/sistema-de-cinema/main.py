@@ -2,19 +2,16 @@ films = ['Ainda Estou Aqui', 'Emilia Perez', 'A Substância', 'Wicked', 'O Auto 
 prices = [25.00, 30.00, 20.00, 35.00, 15.00]
 
 def filmsOptions(films):
-    """Exibe os filmes disponíveis."""
     print('\nFilmes em cartaz: \n')
     for i, film in enumerate(films, start=1):
         print(f'{i} - {film}')
 
 def filmsOptionsPrices(films, prices):
-    """Exibe os filmes disponíveis com seus preços."""
     print('\nFilmes em cartaz: \n')
     for i, (film, price) in enumerate(zip(films, prices), start=1):
         print(f'{i} - {film}: R${price:.2f}')
 
 def filmsOnDisplay(films, prices):
-    """Exibe a lista de filmes em cartaz e opções de navegação."""
     filmsOptions(films)
 
     while True:
@@ -33,7 +30,6 @@ def filmsOnDisplay(films, prices):
             print('\nOpção inválida! Tente novamente...\n')
 
 def chairsSelecting():
-    """Solicita a seleção de uma cadeira entre 1 e 36."""
     while True:
         chairSelect = input(
             '\n- - -\n\n'
@@ -48,7 +44,6 @@ def chairsSelecting():
             print("Número de cadeira inválido! Por favor, escolha entre 1 e 36.")
 
 def tickets(films, prices):
-    """Realiza a compra de ingressos para o filme escolhido."""
     filmsOptionsPrices(films, prices)
 
     while True:
@@ -64,7 +59,6 @@ def tickets(films, prices):
             print('\nOpção inválida! Tente novamente...\n')
 
 def main(films, prices):
-    """Menu principal do Cinema Moviemax."""
     while True:
         print(
             '- - - M O V I E M A X - - -\n\n'
