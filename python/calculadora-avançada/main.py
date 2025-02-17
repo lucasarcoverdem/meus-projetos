@@ -1,7 +1,6 @@
 import math
 
 def continuar():
-    """Pergunta ao usuário se deseja continuar ou encerrar."""
     while True:
         opcao = input('\n\nDeseja continuar? (s/n) ').strip().lower()
         if opcao in ['s', 'sim']:
@@ -13,7 +12,6 @@ def continuar():
             print("Opção inválida! Digite 's' para continuar ou 'n' para sair.")
 
 def operacoes_basicas():
-    """Realiza operações matemáticas básicas entre dois números."""
     while True:
         try:
             num1 = float(input('\nInsira um número: '))
@@ -54,7 +52,6 @@ def operacoes_basicas():
             break
 
 def circunferencia():
-    """Calcula a circunferência de um círculo a partir de seu raio."""
     while True:
         try:
             raio = float(input('\nInsira o raio do círculo: '))
@@ -81,7 +78,6 @@ def circunferencia():
             break
 
 def pitagoras():
-    """Aplica o teorema de Pitágoras para calcular a hipotenusa de um triângulo retângulo."""
     while True:
         try:
             a = float(input('\nInsira o cateto A: '))
@@ -109,7 +105,6 @@ def pitagoras():
             break
 
 def bhaskara():
-    """Resolve uma equação quadrática utilizando a fórmula de Bhaskara."""
     while True:
         try:
             a = float(input('\nInsira o coeficiente a: '))
@@ -133,7 +128,6 @@ def bhaskara():
             break
 
 def main():
-    """Menu principal da calculadora."""
     while True: 
         print('--- CALCULADORA ---\n')
         opcoes = input(
