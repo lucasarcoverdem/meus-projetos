@@ -1,7 +1,6 @@
 current_balance = 0
 
 def deposit():
-    """Realiza o depósito de um valor na conta."""
     global current_balance
     print('\n- - - D E P Ó S I T O - - -')
     
@@ -16,12 +15,10 @@ def deposit():
         print('\nErro! Digite um número válido.')
 
 def view_balance():
-    """Exibe o saldo atual da conta."""
     print('\n- - - S A L D O - - -')
     print(f'\nSeu saldo atual é R${current_balance:.2f}')
 
 def transfer():
-    """Realiza uma transferência para outro usuário."""
     global current_balance
     print('\n- - - T R A N S F E R Ê N C I A - - -')
     recipient_email = input('\nEmail do destinatário: ').strip()
@@ -41,7 +38,6 @@ def transfer():
             print('\nErro! Digite um valor numérico válido.')
 
 def withdraw():
-    """Realiza um saque da conta."""
     global current_balance
     print('\n- - - S A Q U E - - -')
     
@@ -58,14 +54,12 @@ def withdraw():
         print('\nErro! Digite um valor numérico válido.')
 
 def invest():
-    """Menu de investimentos (ações e criptomoedas)."""
     stocks = ['NVDA', 'AMZO34', 'IBOV', 'GOGL34', 'MSFT34']
     cryptocurrencies = ['BTC', 'ETH', 'XRP']
     user_stocks = []
     user_cryptos = []
 
     def stock_exchange():
-        """Compra e venda de ações."""
         print('\n- - - B O L S A - - -')
         while True:
             choice = input('\n1 - Comprar ações\n2 - Vender ações\n3 - Voltar\n\n').strip()
@@ -94,7 +88,6 @@ def invest():
                 print('\nOpção inválida!')
 
     def crypto():
-        """Compra e venda de criptomoedas."""
         print('\n- - - C R I P T O M O E D A S - - -')
         while True:
             choice = input('\n1 - Comprar criptos\n2 - Vender criptos\n3 - Voltar\n\n').strip()
@@ -123,7 +116,6 @@ def invest():
                 print('\nOpção inválida!')
 
     def view_investments():
-        """Exibe os investimentos atuais (ações e criptomoedas)."""
         print('\n- - - S E U S  I N V E S T I M E N T O S - - -')
         if user_stocks:
             print('\nAções:', ', '.join(user_stocks))
@@ -148,7 +140,6 @@ def invest():
             print('\nOpção inválida!')
 
 def main():
-    """Função principal do banco."""
     print('- - - B A N C O  A R C O V E R D E - - -')
     while True:
         choice = input('\n1 - Depositar\n2 - Retirar\n3 - Transferir\n4 - Ver saldo\n5 - Investimentos\n6 - Sair\n\n').strip()
