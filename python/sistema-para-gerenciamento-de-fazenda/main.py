@@ -6,6 +6,7 @@ from classes.milkproduction import MilkProduction
 from classes.employee import Employee
 
 cattle = []
+milk_production = []
 team = []
 
 
@@ -17,12 +18,10 @@ def normalize(text):
 
 def register_bovine():
     print('\n- Registrar bovino')
-
     name = input('\nInsira o nome do bovino: ').strip().lower().capitalize()
 
     while True:
         gender = normalize(input('Insira o gênero do bovino (boi, vaca): ').strip())
-
         if gender in ['boi', 'vaca']:
             break
         else:
@@ -62,13 +61,11 @@ def register_bovine():
 
     new_bovine = Bovine(name, gender, breed, age, weight_kg, market_value)
     cattle.append(new_bovine)
-
     print(f'\n{name} adicionado com sucesso!')
 
 
 def remove_bovine():
     print('\n- Remover bovino')
-
     while True:
         if not cattle:
             print('\nNão há bovinos para remover!')
@@ -87,14 +84,12 @@ def remove_bovine():
 
 def view_cattle():
     print('\n- Ver gado')
-
     if not cattle:
         print('\nNão há gado registrado!')
         return
 
     print('\nLista de Bovinos:')
     print('-' * 30)
-
     for i, bovine in enumerate(cattle, start=1):
         print(f'{i} - {bovine.describe()}')
         print('-' * 30)
@@ -102,14 +97,7 @@ def view_cattle():
 
 def cattle_function():
     print('\n- Gado')
-    menu = input(
-        '\n1 - Registrar bovino'
-        '\n2 - Remover bovino'
-        '\n3 - Ver gado registrado'
-        '\n4 - Voltar'
-        '\n(1, 2...): '
-    ).strip().lower().replace(" ", "")
-
+    menu = input('\n1 - Registrar bovino\n2 - Remover bovino\n3 - Ver gado registrado\n4 - Voltar\n(1, 2...): ').strip().lower().replace(" ", "")
     menu = normalize(menu)
 
     if menu in ['1', 'registrarbovino']:
@@ -124,37 +112,90 @@ def cattle_function():
         print("\nOpção inválida. Tente novamente.")
 
 
+def register_milk_production():
+    print('\n- Registrar produção')
+    production_date = input('Insira a data da produção (dd/mm/yyyy): ').strip()
+
+    while True:
+        try:
+            amount = float(input('Insira a quantidade produzida (litros): ').strip())
+            if amount < 0:
+                print('\nA quantidade não pode ser negativa. Tente novamente.')
+            else:
+                break
+        except ValueError:
+            print('\nEntrada inválida. Digite um número válido.')
+
+    new_production = MilkProduction(production_date, amount)
+    milk_production.append(new_production)
+    print('\nProdução registrada com sucesso!')
+
+
+def view_milk_production():
+    print('\n- Ver produções')
+    if not milk_production:
+        print('\nNão há produções registradas!')
+        return
+
+    print('\nRegistro:')
+    print('-' * 30)
+    for i, production in enumerate(milk_production, start=1):
+        print(f'{i} - {production.describe()}')
+        print('-' * 30)
+
+
+def milk_function():
+    print('\n- Leite')
+    menu = input('\n1 - Registrar produção\n2 - Ver produção\n3 - Voltar\n(1, 2...): ').strip().lower().replace(" ", "")
+    menu = normalize(menu)
+
+    if menu in ['1', 'registrarproducao']:
+        register_milk_production()
+    elif menu in ['2', 'verproducao']:
+        view_milk_production()
+    elif menu in ['3', 'voltar']:
+        return
+    else:
+        print('\nOpção inválida. Tente novamente!')
+
+
+def team_function():
+    print('\n- Equipe')
+    menu = input('\n1 - Ver equipe atual\n2 - Registrar funcionário\n3 - Demitir funcionário\n4 - Voltar\n(1, 2...): ').strip().lower().replace(" ", "")
+    menu = normalize(menu)
+
+    if menu in ['1', 'verequipeatual']:
+        pass
+    elif menu in ['2', 'registrarfuncionario']:
+        pass
+    elif menu in ['3', 'demitirfuncionario']:
+        pass
+    elif menu in ['4', 'voltar']:
+        return
+
+
 def login():
     user = input('Digite seu nome de usuário: ').strip().lower().capitalize()
     password = input('Digite sua senha: ')
-
     print('Entrando. . .')
     return user
 
 
 def main():
     user = login()
-
-    print('\n- - - F A Z E N D A B A N A N E I R A - - -')
+    print('\n- - - F A Z E N D A B A N A N I R A - - -')
     print(f'\nSeja bem-vindo, {user}!')
 
     while True:
-        menu = input(
-            '\n1 - Gerenciar gado'
-            '\n2 - Gerenciar produção'
-            '\n3 - Gerenciar equipe'
-            '\n4 - Sair'
-            '\n(1, 2...): '
-        ).strip().lower().replace(" ", "")
-
+        menu = input('\n1 - Gerenciar gado\n2 - Gerenciar produção\n3 - Gerenciar equipe\n4 - Sair\n(1, 2...): ').strip().lower().replace(" ", "")
         menu = normalize(menu)
 
         if menu in ['1', 'gerenciargado']:
             cattle_function()
         elif menu in ['2', 'gerenciarproducao']:
-            pass
+            milk_function()
         elif menu in ['3', 'gerenciarequipe']:
-            pass
+            team_function()
         elif menu == '4':
             print('\nEncerrando. . .')
             break
