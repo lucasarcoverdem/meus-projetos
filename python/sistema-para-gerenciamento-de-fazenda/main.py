@@ -3,7 +3,7 @@
 import json
 import unicodedata
 
-from classes.bovines import Bovine
+from classes.bovine import Bovine
 from classes.milkproduction import MilkProduction
 from classes.employee import Employee
 
@@ -68,6 +68,29 @@ def register_bovine():
     print(f'\n{name} adicionado com sucesso!')
 
 
+def remove_bovine():
+    print('\n- Remover bovino')
+
+    while True:
+        if not cattle: 
+            print('\nNão há bovinos para remover!')
+            break
+        else:
+            removed_bovine = input('\nInsira o nome do bovino a ser removido: ').strip().lower().capitalize()
+
+            for bovine in cattle:
+                if bovine.name == removed_bovine:
+                    cattle.remove(bovine)
+                    print(f'\n{removed_bovine} removido com sucesso!')
+                    return
+                
+                print('\nBovino não encontrado! Tente novamente.')
+
+
+def view_cattle():
+    print('\n- Ver gado')
+
+
 def cattle_function():
     print('\n- Gado')
     menu = input(
@@ -83,7 +106,7 @@ def cattle_function():
     if menu == '1':
         register_bovine()
     elif menu == '2':
-        pass
+        remove_bovine()
     elif menu == '3':
         pass
     elif menu == '4':
