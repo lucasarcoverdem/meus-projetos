@@ -1,5 +1,3 @@
-# Sistema para Gerenciamento de Fazenda
-
 import json
 import unicodedata
 
@@ -7,9 +5,9 @@ from classes.bovine import Bovine
 from classes.milkproduction import MilkProduction
 from classes.employee import Employee
 
-
 cattle = []
 team = []
+
 
 def normalize(text):
     text = text.strip().lower().replace(" ", "")
@@ -28,7 +26,7 @@ def register_bovine():
         if gender in ['boi', 'vaca']:
             break
         else:
-            print('\nEntrada inválida. Por favor, digite "boi" ou "vaca".')    
+            print('\nEntrada inválida. Por favor, digite "boi" ou "vaca".')
 
     breed = input('Insira a raça do bovino: ').strip().lower().capitalize()
 
@@ -42,7 +40,7 @@ def register_bovine():
         except ValueError:
             print('\nEntrada inválida. Digite um número válido (ex: 0.5 para 5 meses).')
 
-    while True:    
+    while True:
         try:
             weight_kg = float(input('Insira o peso do bovino (kg): ').strip())
             if weight_kg <= 0:
@@ -72,23 +70,34 @@ def remove_bovine():
     print('\n- Remover bovino')
 
     while True:
-        if not cattle: 
+        if not cattle:
             print('\nNão há bovinos para remover!')
             break
-        else:
-            removed_bovine = input('\nInsira o nome do bovino a ser removido: ').strip().lower().capitalize()
 
-            for bovine in cattle:
-                if bovine.name == removed_bovine:
-                    cattle.remove(bovine)
-                    print(f'\n{removed_bovine} removido com sucesso!')
-                    return
-                
-                print('\nBovino não encontrado! Tente novamente.')
+        removed_bovine = input('\nInsira o nome do bovino a ser removido: ').strip().lower().capitalize()
+
+        for bovine in cattle:
+            if bovine.name == removed_bovine:
+                cattle.remove(bovine)
+                print(f'\n{removed_bovine} removido com sucesso!')
+                return
+
+        print('\nBovino não encontrado! Tente novamente.')
 
 
 def view_cattle():
     print('\n- Ver gado')
+
+    if not cattle:
+        print('\nNão há gado registrado!')
+        return
+
+    print('\nLista de Bovinos:')
+    print('-' * 30)
+
+    for i, bovine in enumerate(cattle, start=1):
+        print(f'{i} - {bovine.describe()}')
+        print('-' * 30)
 
 
 def cattle_function():
@@ -99,18 +108,18 @@ def cattle_function():
         '\n3 - Ver gado registrado'
         '\n4 - Voltar'
         '\n(1, 2...): '
-    ).strip().lower()
+    ).strip().lower().replace(" ", "")
 
     menu = normalize(menu)
 
-    if menu == '1':
+    if menu in ['1', 'registrarbovino']:
         register_bovine()
-    elif menu == '2':
+    elif menu in ['2', 'removerbovino']:
         remove_bovine()
-    elif menu == '3':
-        pass
+    elif menu in ['3', 'vergadoregistrado']:
+        view_cattle()
     elif menu == '4':
-        return 
+        return
     else:
         print("\nOpção inválida. Tente novamente.")
 
