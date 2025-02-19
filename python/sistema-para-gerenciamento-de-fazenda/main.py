@@ -1,4 +1,3 @@
-import json
 import unicodedata
 
 from classes.bovine import Bovine
