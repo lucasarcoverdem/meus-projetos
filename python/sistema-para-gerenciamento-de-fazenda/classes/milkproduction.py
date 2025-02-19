@@ -9,3 +9,12 @@ class MilkProduction:
             f'Quantidade: {self.amount}'
         ])
     
+    def to_dict(self):
+        return {
+            "production_date": self.production_date,
+            "amount": self.amount
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(**data)
