@@ -16,3 +16,17 @@ class Bovine:
             f'Peso: {self.weight_kg}',
             f'Valor: {self.market_value}'
         ])
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "gender": self.gender,
+            "breed": self.breed,
+            "age": self.age,
+            "weight_kg": self.weight_kg,
+            "market_value": self.market_value
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(**data)
