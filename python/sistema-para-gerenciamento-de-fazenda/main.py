@@ -25,7 +25,7 @@ def register_bovine():
         if gender in ['boi', 'vaca']:
             break
         else:
-            print('\nEntrada inválida. Por favor, digite "boi" ou "vaca".')
+            print('\nEntrada inválida. Por favor, digite "boi" ou "vaca".\n')
 
     breed = input('Insira a raça do bovino: ').strip().lower().capitalize()
 
@@ -33,31 +33,31 @@ def register_bovine():
         try:
             age = float(input('Insira a idade do bovino (anos, ex: 0.5 para 5 meses): ').strip())
             if age < 0:
-                print("\nA idade não pode ser negativa. Tente novamente.")
+                print("\nA idade não pode ser negativa. Tente novamente.\n")
             else:
                 break
         except ValueError:
-            print('\nEntrada inválida. Digite um número válido (ex: 0.5 para 5 meses).')
+            print('\nEntrada inválida. Digite um número válido (ex: 0.5 para 5 meses).\n')
 
     while True:
         try:
             weight_kg = float(input('Insira o peso do bovino (kg): ').strip())
             if weight_kg <= 0:
-                print("\nO peso deve ser maior que zero.")
+                print("\nO peso deve ser maior que zero.\n")
             else:
                 break
         except ValueError:
-            print('\nEntrada inválida. Digite um número válido (ex: 500.5).')
+            print('\nEntrada inválida. Digite um número válido (ex: 500.5).\n')
 
     while True:
         try:
             market_value = float(input('Insira o valor de mercado do bovino (R$): ').strip())
             if market_value < 0:
-                print("\nO valor de mercado não pode ser negativo.")
+                print("\nO valor de mercado não pode ser negativo.\n")
             else:
                 break
         except ValueError:
-            print('\nEntrada inválida. Digite um número válido (ex: 3500.75).')
+            print('\nEntrada inválida. Digite um número válido (ex: 3500.75).\n')
 
     new_bovine = Bovine(name, gender, breed, age, weight_kg, market_value)
     cattle.append(new_bovine)
@@ -159,17 +159,84 @@ def milk_function():
         print('\nOpção inválida. Tente novamente!')
 
 
+def view_current_team():
+    print('\n- Ver equipe atual')
+    if not team:
+        print('\nNão há funcionários registrados!')
+        return
+    
+    print('\nEquipe:')
+    print('-' * 30)
+
+
+def register_employee():
+    print('\n- Registrar funcionário')
+
+    name = input('\nInsira o nome do funcionário: ').strip().lower().capitalize()
+    role = input('Insira a função do funcionário ("Aprendiz" p/ jovem aprendiz): ').strip().lower().capitalize()
+
+    while True:
+        try:
+            salary = float(input('Insira o salário do funcionário (R$ p/ semana): ').strip())
+            if salary * 4 < 1518:
+                print('\nSalário abaixo do imposto pelas Leis Trabalhistas!\n')
+            else:
+                break
+        except ValueError:
+            print('\nValor inválido. Digite um número.\n')
+
+    while True:
+        try:
+            age = int(input('Insira a idade do funcionário: ').strip())
+            if age < 18 and role != 'Aprendiz':
+                print('\nIdade inválida para a função!\n')
+            else:
+                break
+        except ValueError:
+            print('\nValor inválido. Digite um número.\n')
+
+    while True:
+        gender = input('Insira o gênero do funcionário (fem / masc): ').strip().lower()
+        if gender not in ['fem', 'masc']:
+            print('\nDigite "fem" ou "masc"!\n')
+        else:
+            break
+
+    new_employee = Employee(name, role, salary, age, gender)
+    team.append(new_employee)
+    
+    print(f'{new_employee.name} registrado com sucesso!')
+
+
+def remove_employee():
+    print('\n- Demitir funcionário')
+    while True:
+        if not team:
+            print('\nNão há funcionários para demitir!')
+            break
+
+        removed_employee = input('\nInsira o nome do funcionário a ser demitido: ').strip().lower().capitalize()
+
+        for employee in team:
+            if employee.name == removed_employee:
+                team.remove(employee)
+                print(f'\n{removed_employee} removido com sucesso!')
+                return
+
+        print('\nFuncionário não encontrado! Tente novamente.')
+
+
 def team_function():
     print('\n- Equipe')
     menu = input('\n1 - Ver equipe atual\n2 - Registrar funcionário\n3 - Demitir funcionário\n4 - Voltar\n(1, 2...): ').strip().lower().replace(" ", "")
     menu = normalize(menu)
 
     if menu in ['1', 'verequipeatual']:
-        pass
+        view_current_team()
     elif menu in ['2', 'registrarfuncionario']:
-        pass
+        register_employee()
     elif menu in ['3', 'demitirfuncionario']:
-        pass
+        remove_employee()
     elif menu in ['4', 'voltar']:
         return
 
