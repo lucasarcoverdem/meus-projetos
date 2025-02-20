@@ -14,16 +14,4 @@ class Employee:
             f'Idade: {self.age}',
             f'Gênero: {self.gender}'
         ])
-
-    def to_dict(self):
-        return {
-            "name": self.name,
-            "role": self.role,
-            "salary": self.salary,
-            "age": self.age,
-            "gender": self.gender
-        }
-
-    @classmethod
-    def from_dict(cls, data):
-        return cls(**data)
+        
